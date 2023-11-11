@@ -1,0 +1,85 @@
+.login {
+  height: 100vh;
+  background-color: rgb(193, 190, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .card {
+    display: flex;
+    width: 55%;
+    min-height: 600px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    overflow: hidden;
+
+    .left {
+      flex: 1;
+      background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
+        url("https://images.pexels.com/photos/10159624/pexels-photo-10159624.jpeg?auto=compress&cs=tinysrgb&w=800")
+          center;
+      background-size: cover;
+      padding: 50px;
+      color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+
+      h1 {
+        font-size: 100px;
+        line-height: 100px;
+        font-weight: 400;
+      }
+
+      //   p {
+      //   }
+
+      span {
+        font-size: 14px;
+      }
+
+      button {
+        width: 50%;
+        padding: 10px;
+        border: none;
+        color: rebeccapurple;
+        cursor: pointer;
+        font-weight: bold;
+      }
+    }
+    .right {
+      flex: 1;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 50px;
+
+      h1 {
+        color: #555;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        input {
+          border: none;
+          border-bottom: 1px solid lightgray;
+          padding: 20px 10px;
+        }
+
+        button {
+          width: 50%;
+          padding: 10px;
+          border: none;
+          background-color: #938eef;
+          color: whitesmoke;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
