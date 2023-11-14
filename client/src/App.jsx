@@ -1,3 +1,9 @@
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
 import LeftBar from "./components/leftBar/LeftBar";
 import NavBar from "./components/navbar/NavBar";
 import RightBar from "./components/rightBar/RightBar";
@@ -5,19 +11,19 @@ import Home from "./pagess/home/Home";
 import Login from "./pagess/login/Login";
 import Profile from "./pagess/profile/Profile";
 import Register from "./pagess/register/Register";
-import {
-  createBrowserRouter,
-  Navigate,
-  Outlet,
-  RouterProvider,
-} from "react-router-dom";
+import "./style.scss";
+import { useContext } from "react";
+import { DarkModeContext } from "./context/darkModeContext";
 
 function App() {
   const currentUser = true;
 
+  const { darkMode } = useContext(DarkModeContext);
+
+  console.log(darkMode);
   const Layout = () => {
     return (
-      <div>
+      <div className={`theme-${darkMode ? "dark" : "light"}`}>
         <NavBar />
         <div
           style={{

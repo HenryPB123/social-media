@@ -1,0 +1,9 @@
+@import "../../style.scss";
+
+.home {
+  @include themify($theme) {
+    //the parameters can be a string or the variable, example: "bgSoft" or simply bgSoft variable
+    background-color: themed("bgSoft");
+    padding: 20px 70px;
+  }
+}

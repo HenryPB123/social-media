@@ -33,6 +33,126 @@ const RightBar = () => {
             </div>
           </div>
         </div>
+
+        <div className="item">
+          <span>Latest Activities</span>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+
+              <p>
+                <span>Pet Name</span> changed their cover picture
+              </p>
+            </div>
+            <span>1 min ago</span>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+
+              <p>
+                <span>Pet Name</span> changed their cover picture
+              </p>
+            </div>
+            <span>1 min ago</span>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+
+              <p>
+                <span>Pet Name</span> changed their cover picture
+              </p>
+            </div>
+            <span>1 min ago</span>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+
+              <p>
+                <span>Pet Name</span> changed their cover picture
+              </p>
+            </div>
+            <span>1 min ago</span>
+          </div>
+        </div>
+
+        <div className="item">
+          <span>Online Friends</span>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Pet Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Pet Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Pet Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Pet Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Pet Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Pet Name</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
