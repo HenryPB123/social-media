@@ -5,8 +5,15 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import Comments from "../comments/Comments";
+import { useState } from "react";
 
 const Post = ({ post }) => {
+  const [openComment, setOpenComment] = useState(false);
+
+  const liked = false;
+  // const liked = true;
+
   return (
     <div className="post">
       <div className="container">
@@ -30,7 +37,20 @@ const Post = ({ post }) => {
           <p>{post.description}</p>
           {post.img && <img src={post.img} alt="img" />}
         </div>
-        <div className="info"></div>
+        <div className="info">
+          <div className="item">
+            {liked ? <FavoriteBorderIcon /> : <FavoriteBorderOutlinedIcon />}12
+            Likes
+          </div>
+          <div className="item" onClick={() => setOpenComment(!openComment)}>
+            <TextsmsOutlinedIcon />
+            12 Comments
+          </div>
+          <div className="item">
+            <ShareOutlinedIcon /> Share
+          </div>
+        </div>
+        {openComment && <Comments />}
       </div>
     </div>
   );
