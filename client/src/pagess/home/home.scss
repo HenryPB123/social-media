@@ -5,5 +5,13 @@
     //the parameters can be a string or the variable, example: "bgSoft" or simply bgSoft variable
     background-color: themed("bgSoft");
     padding: 20px 70px;
+
+    @include mobile {
+      padding: 10px;
+    }
+
+    @include tablet {
+      padding: 20px;
+    }
   }
 }

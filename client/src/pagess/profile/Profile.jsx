@@ -8,6 +8,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 import LanguageIcon from "@mui/icons-material/Language";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Posts from "../../components/posts/Posts";
 
 const Profile = () => {
   return (
@@ -21,7 +22,7 @@ const Profile = () => {
         <img
           src="https://images.pexels.com/photos/1612846/pexels-photo-1612846.jpeg?auto=compress&cs=tinysrgb&w=800"
           alt="img"
-          className="profile"
+          className="profilePic"
         />
       </div>
 
@@ -55,8 +56,8 @@ const Profile = () => {
                 <LanguageIcon />
                 <span>Social-Pet</span>
               </div>
-              <button>Follow</button>
             </div>
+            <button>Follow</button>
           </div>
           <div className="right">
             <MailOutlineIcon />
@@ -64,6 +65,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <Posts />
     </div>
   );
 };
