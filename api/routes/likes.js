@@ -3,6 +3,6 @@ import {} from "../controllers/likesControl.js";
 
 const router = express.Router();
 
-router.get("/");
+router.get("");
 
 export default router;

@@ -3,6 +3,6 @@ import {} from "../controllers/commetsControl.js";
 
 const router = express.Router();
 
-router.get("/");
+router.get("");
 
 export default router;
