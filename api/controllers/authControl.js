@@ -13,19 +13,29 @@ export const register = (req, res) => {
     //CREATE A NEW USER
     //Hash the password
     const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+    var hashedPassword = "";
+    if (req.body.password.length === 0)
+      return res.status(500).json("Please fill out all the fields");
+    else {
+      hashedPassword = bcrypt.hashSync(req.body.password, salt);
+    }
 
     const q =
-      "INSERT INTO users (`username`, `email`, `password`, `name`) VALUE (?)";
+      "INSERT INTO users (`username`, `email`, `name`, `password`) VALUE (?)";
 
     const values = [
-      req.body.username,
+      req.body.username.toLowerCase(),
       req.body.email,
+      req.body.name.toLowerCase(),
       hashedPassword,
-      req.body.name,
     ];
 
     db.query(q, [values], (error, data) => {
+      for (let i = 0; i < values.length; i++) {
+        if (values[i].length === 0)
+          return res.status(500).json("Please fill out all the fields");
+      }
+
       if (error) return res.status(500).json(error);
       return res.status(200).json("User has been created!");
     });

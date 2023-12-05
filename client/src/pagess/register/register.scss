@@ -1,3 +1,5 @@
+@import "../../style.scss";
+
 .register {
   height: 100vh;
   background-color: rgb(193, 190, 255);
@@ -8,11 +10,21 @@
   .card {
     display: flex;
     flex-direction: row-reverse;
-    width: 55%;
+    width: 60%;
     min-height: 600px;
     border-radius: 10px;
     background-color: whitesmoke;
     overflow: hidden;
+
+    @include mobile {
+      display: flex;
+      flex-direction: column-reverse;
+      width: 90%;
+      gap: 10px;
+    }
+    @include tablet {
+      width: 90%;
+    }
 
     .left {
       flex: 1;
@@ -23,13 +35,32 @@
       padding: 50px;
       color: whitesmoke;
       display: flex;
+
+      flex-wrap: wrap;
+
       flex-direction: column;
+      justify-content: center;
+
       gap: 30px;
+
+      @include mobile {
+        padding: 20px;
+        gap: 15px;
+      }
 
       h1 {
         font-size: 100px;
         line-height: 100px;
         font-weight: 400;
+
+        @include mobile {
+          font-size: 40px;
+          line-height: 40px;
+        }
+        @include tablet {
+          font-size: 50px;
+          line-height: 50px;
+        }
       }
 
       //   p {
@@ -52,9 +83,15 @@
       flex: 1;
       padding: 50px;
       display: flex;
+      flex-wrap: wrap;
       flex-direction: column;
       justify-content: center;
       gap: 50px;
+
+      @include mobile {
+        padding: 20px;
+        gap: 15px;
+      }
 
       h1 {
         color: #555;
@@ -65,10 +102,18 @@
         flex-direction: column;
         gap: 30px;
 
+        @include mobile {
+          gap: 15px;
+        }
+
         input {
           border: none;
           border-bottom: 1px solid lightgray;
           padding: 20px 10px;
+
+          @include mobile {
+            padding: 10px 10px;
+          }
         }
 
         button {

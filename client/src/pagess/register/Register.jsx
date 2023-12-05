@@ -12,6 +12,7 @@ const Register = () => {
   });
 
   const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
 
   const handleChange = (e) => {
     setInputs((previous) => ({
@@ -20,16 +21,27 @@ const Register = () => {
     }));
   };
 
+  const clean = () => {
+    if (data != null) {
+      setTimeout(() => {
+        setData(null);
+      }, 500);
+    }
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:8800/api/auth/register`, inputs);
+      const response = await axios.post(
+        `http://localhost:8800/api/auth/register`,
+        inputs
+      );
+
+      setData(response.data);
     } catch (error) {
       setError(error.response.data);
     }
   };
-
-  console.log(error);
 
   return (
     <div className="register">
@@ -61,19 +73,21 @@ const Register = () => {
               name="email"
               onChange={handleChange}
             />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-            />
+
             <input
               type="text"
               placeholder="Name"
               name="name"
               onChange={handleChange}
             />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
             {error && <h4>{error}</h4>}
+            {data && <h4>{data}</h4>}
             <button onClick={handleRegister}>Register</button>
           </form>
         </div>
