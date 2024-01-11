@@ -27,7 +27,16 @@ const Stories = () => {
     },
   ];
 
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
+  const currentUser = {
+    id: 1,
+    name: "Pet Name",
+    userId: 1,
+    profilePic:
+      "https://images.pexels.com/photos/56733/pexels-photo-56733.jpeg?auto=compress&cs=tinysrgb&w=800",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    img: "https://images.pexels.com/photos/2317904/pexels-photo-2317904.jpeg?auto=compress&cs=tinysrgb&w=800",
+  };
 
   return (
     <div className="stories">

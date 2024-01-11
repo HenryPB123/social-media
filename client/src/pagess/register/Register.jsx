@@ -7,12 +7,11 @@ const Register = () => {
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
-    password: "",
     name: "",
+    password: "",
   });
 
-  const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   const handleChange = (e) => {
     setInputs((previous) => ({
@@ -21,27 +20,34 @@ const Register = () => {
     }));
   };
 
-  const clean = () => {
-    if (data != null) {
-      setTimeout(() => {
-        setData(null);
-      }, 500);
-    }
-  };
-
   const handleRegister = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        `http://localhost:8800/api/auth/register`,
-        inputs
-      );
+    e.preventDefault(); //!pendeinte
 
-      setData(response.data);
-    } catch (error) {
-      setError(error.response.data);
+    if (
+      inputs.username.length === 0 ||
+      inputs.email.length === 0 ||
+      inputs.name.length === 0 ||
+      inputs.password.length === 0
+    ) {
+      setNotification("You need fill all the fields");
+    } else {
+      try {
+        // if (response.data === "User has been created!") {
+        //   console.log("target", e.target.username);
+        // }
+
+        const response = await axios.post(
+          `http://localhost:8800/api/auth/register`,
+          inputs
+        );
+
+        setNotification(response.data);
+      } catch (error) {
+        setNotification(error.response.data);
+      }
     }
   };
+  // console.log("response", response);
 
   return (
     <div className="register">
@@ -86,8 +92,7 @@ const Register = () => {
               name="password"
               onChange={handleChange}
             />
-            {error && <h4>{error}</h4>}
-            {data && <h4>{data}</h4>}
+            {notification && <h4>{notification}</h4>}
             <button onClick={handleRegister}>Register</button>
           </form>
         </div>

@@ -13,12 +13,7 @@ export const register = (req, res) => {
     //CREATE A NEW USER
     //Hash the password
     const salt = bcrypt.genSaltSync(10);
-    var hashedPassword = "";
-    if (req.body.password.length === 0)
-      return res.status(500).json("Please fill out all the fields");
-    else {
-      hashedPassword = bcrypt.hashSync(req.body.password, salt);
-    }
+    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
     const q =
       "INSERT INTO users (`username`, `email`, `name`, `password`) VALUE (?)";
@@ -31,11 +26,6 @@ export const register = (req, res) => {
     ];
 
     db.query(q, [values], (error, data) => {
-      for (let i = 0; i < values.length; i++) {
-        if (values[i].length === 0)
-          return res.status(500).json("Please fill out all the fields");
-      }
-
       if (error) return res.status(500).json(error);
       return res.status(200).json("User has been created!");
     });
@@ -44,7 +34,7 @@ export const register = (req, res) => {
 
 //!---------------------------------------------------------------------
 export const login = (req, res) => {
-  const q = "SELECT * FROM users WHERE USERNAME = ?";
+  const q = "SELECT * FROM users WHERE username = ?";
 
   db.query(q, [req.body.username], (error, data) => {
     if (error) return res.status(500).json(error);
@@ -56,7 +46,7 @@ export const login = (req, res) => {
     );
 
     if (!checkPassword)
-      return res.status(400).json("Wrong username or Password!");
+      return res.status(400).json("Wrong username or password!");
 
     const token = jwt.sign({ id: data[0].id }, process.env.SECRETKEY);
 
