@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.scss";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
@@ -12,6 +12,8 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setInputs((previous) => ({
       ...previous,
@@ -24,9 +26,11 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await login(inputs);
+      await login(inputs);
+      navigate("/");
 
-      setData(response.data);
+      // const response = await login(inputs);
+      // setData(response.data);
     } catch (error) {
       setError(error.response.data);
     }
@@ -64,7 +68,7 @@ const Login = () => {
             />
 
             {error && <h4>{error}</h4>}
-            {data && <h4>{data}</h4>}
+            {/*{data && <h4>{data}</h4>}*/}
 
             <button onClick={handleLogin}>Login</button>
           </form>
