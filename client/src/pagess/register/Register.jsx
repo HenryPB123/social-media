@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./register.scss";
 import { useState } from "react";
 import axios from "axios";
@@ -12,6 +12,8 @@ const Register = () => {
   });
 
   const [notification, setNotification] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputs((previous) => ({
@@ -42,6 +44,13 @@ const Register = () => {
         );
 
         setNotification(response.data);
+        setInputs({
+          username: "",
+          email: "",
+          name: "",
+          password: "",
+        });
+        setTimeout(() => navigate("/login"), 2000);
       } catch (error) {
         setNotification(error.response.data);
       }
@@ -72,12 +81,14 @@ const Register = () => {
               placeholder="Username"
               name="username"
               onChange={handleChange}
+              value={inputs.username}
             />
             <input
               type="email"
               placeholder="Email"
               name="email"
               onChange={handleChange}
+              value={inputs.email}
             />
 
             <input
@@ -85,12 +96,14 @@ const Register = () => {
               placeholder="Name"
               name="name"
               onChange={handleChange}
+              value={inputs.name}
             />
             <input
               type="password"
               placeholder="Password"
               name="password"
               onChange={handleChange}
+              value={inputs.password}
             />
             {notification && <h4>{notification}</h4>}
             <button onClick={handleRegister}>Register</button>

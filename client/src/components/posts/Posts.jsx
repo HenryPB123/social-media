@@ -6,12 +6,10 @@ import { useQuery } from "@tanstack/react-query";
 const Posts = () => {
   const { isPending, error, data } = useQuery({
     queryKey: ["posts"],
-    queryFn: () => {
+    queryFn: async () => {
       return makeRequest.get("posts").then((res) => res.data);
     },
   });
-
-  console.log("data", data);
 
   return (
     <div className="posts">

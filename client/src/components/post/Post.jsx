@@ -7,6 +7,7 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Comments from "../comments/Comments";
 import { useState } from "react";
+import moment from "moment";
 
 const Post = ({ post }) => {
   const [openComment, setOpenComment] = useState(false);
@@ -25,9 +26,11 @@ const Post = ({ post }) => {
                 to={`/profile/${post.userId}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <span className="name">{post.name}</span>
+                <span className="name">
+                  {post.name.charAt(0).toUpperCase() + post.name.slice(1)}
+                </span>
               </Link>
-              <span className="date">1 Min Ago</span>
+              <span className="date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
           <MoreHorizOutlinedIcon />
@@ -35,7 +38,7 @@ const Post = ({ post }) => {
         <hr />
         <div className="content">
           <p>{post.desc}</p>
-          {post.img && <img src={post.img} alt="img" />}
+          {post.img && <img src={"../../../upload/" + post.img} alt="img" />}
         </div>
         <div className="info">
           <div className="item">
@@ -50,7 +53,7 @@ const Post = ({ post }) => {
             <ShareOutlinedIcon /> Share
           </div>
         </div>
-        {openComment && <Comments />}
+        {openComment && <Comments postId={post.id} />}
       </div>
     </div>
   );
