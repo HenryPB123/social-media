@@ -1,5 +1,5 @@
 import "./navBar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
@@ -15,6 +15,7 @@ import { AuthContext } from "../../context/authContext";
 const NavBar = () => {
   const { toggle, darkMode } = useContext(DarkModeContext);
   const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
     <div className="navBar">
@@ -22,7 +23,7 @@ const NavBar = () => {
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>Social Pet</span>
         </Link>
-        <HomeOutlinedIcon />
+        <HomeOutlinedIcon onClick={() => navigate("/")} />
         {darkMode ? (
           <WbSunnyOutlinedIcon onClick={toggle} />
         ) : (
@@ -41,7 +42,10 @@ const NavBar = () => {
         <NotificationsOutlinedIcon />
         <div className="user">
           <img src={currentUser.profilePic} alt="user" />
-          <span>{currentUser.name}</span>
+          <span>
+            {currentUser.name.charAt(0).toUpperCase() +
+              currentUser.name.slice(1)}
+          </span>
         </div>
       </div>
     </div>

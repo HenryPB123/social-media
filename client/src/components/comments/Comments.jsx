@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import "./comments.scss";
 import { AuthContext } from "../../context/authContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"; //Permite hacer peticiones más fácil que  UseEffect
-import moment from "moment";
 import { makeRequest } from "../../axios";
+import moment from "moment";
 
 const Comments = ({ postId }) => {
   const { currentUser } = useContext(AuthContext);
