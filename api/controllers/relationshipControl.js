@@ -2,11 +2,13 @@ import { db } from "../connect.js";
 import jwt from "jsonwebtoken";
 
 export const getRelationships = (req, res) => {
-  const q = "SELECT userId FROM likes WHERE postId = ?";
+  const q = "SELECT followerUserId FROM relationships WHERE followedUserId = ?";
 
-  db.query(q, [req.query.postId], (error, data) => {
+  db.query(q, [req.query.followedUserId], (error, data) => {
     if (error) return res.status(500).json(error);
-    return res.status(200).json(data.map((like) => like.userId));
+    return res
+      .status(200)
+      .json(data.map((relationship) => relationship.followerUserId));
   });
 };
 
@@ -17,13 +19,14 @@ export const addRelationship = (req, res) => {
   jwt.verify(token, process.env.SECRETKEY, (error, userInfo) => {
     if (error) return res.status(403).json("Token is not valid!");
 
-    const q = "INSERT INTO likes (`userId`,`postId`) VALUES (?)";
+    const q =
+      "INSERT INTO relationships (`followerUserId`,`followedUserId`) VALUES (?)";
 
-    const values = [userInfo.id, req.body.postId];
+    const values = [userInfo.id, req.body.userId];
 
     db.query(q, [values], (error, data) => {
       if (error) return res.status(500).json(error);
-      return res.status(200).json("Post has been liked!");
+      return res.status(200).json("Following!");
     });
   });
 };
@@ -35,11 +38,12 @@ export const deleteRelationship = (req, res) => {
   jwt.verify(token, process.env.SECRETKEY, (error, userInfo) => {
     if (error) return res.status(403).json("Token is not valid!");
 
-    const q = "DELETE FROM likes WHERE `userId` = ? AND `postId` = ?";
+    const q =
+      "DELETE FROM relationships WHERE `followerUserId` = ? AND `followedUserId` = ?";
 
-    db.query(q, [userInfo.id, req.query.postId], (error, data) => {
+    db.query(q, [userInfo.id, req.query.userId], (error, data) => {
       if (error) return res.status(500).json(error);
-      return res.status(200).json("Post has been disliked!");
+      return res.status(200).json("Unfollow!");
     });
   });
 };

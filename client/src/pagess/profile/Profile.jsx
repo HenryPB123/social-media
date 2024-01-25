@@ -13,13 +13,14 @@ import Update from "../../components/update/Update";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"; //Permite hacer peticiones más fácil que  UseEffect
 import { makeRequest } from "../../axios";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
-
   const userId = parseInt(useLocation().pathname.split("/")[2]);
+
+  const [openUpdate, setOpenUpdate] = useState(false);
 
   const { isPending, error, data } = useQuery({
     queryKey: ["user"],
@@ -30,8 +31,32 @@ const Profile = () => {
     },
   });
 
+  const { isLoading: rIsLoading, data: relationshipData } = useQuery({
+    queryKey: ["relationship"],
+    queryFn: async () => {
+      const res = await makeRequest.get(
+        "/relationships?followedUserId=" + userId
+      );
+      return res.data;
+    },
+  });
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (following) => {
+      if (following)
+        return makeRequest.delete("/relationships?userId=" + userId);
+      return makeRequest.post("/relationships", { userId });
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(["realtionship"]);
+    },
+  });
+
   const handleFollow = () => {
-    //TO DO
+    mutation.mutate(relationshipData.includes(currentUser.id));
   };
 
   return (
@@ -66,7 +91,8 @@ const Profile = () => {
               </div>
               <div className="center">
                 <span>
-                  {data?.name.charAt(0).toUpperCase() + data?.name.slice(1)}
+                  {data &&
+                    data.name.charAt(0).toUpperCase() + data?.name.slice(1)}
                 </span>
                 <div className="info">
                   <div className="item">
@@ -78,10 +104,16 @@ const Profile = () => {
                     <span>{data?.website}</span>
                   </div>
                 </div>
-                {userId === currentUser.id ? (
+                {rIsLoading ? (
+                  "Loading..."
+                ) : userId === currentUser.id ? (
                   <button>Update</button>
                 ) : (
-                  <button onClick={handleFollow}>Follow</button>
+                  <button onClick={handleFollow}>
+                    {relationshipData.includes(currentUser.id)
+                      ? "Following"
+                      : "Follow"}
+                  </button>
                 )}
               </div>
               <div className="right">

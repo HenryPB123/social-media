@@ -29,7 +29,18 @@ const Post = ({ post }) => {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["likes", post.id],
-    queryFn: () => getInfo(post.id),
+    queryFn: async () => {
+      const res = await makeRequest.get("/likes?postId=" + post.id);
+      return res.data;
+    },
+  });
+
+  const { data: commentsData } = useQuery({
+    queryKey: ["comments", post.id],
+    queryFn: async () => {
+      const res = await makeRequest.get("/comments?postId=" + post.id);
+      return res.data;
+    },
   });
 
   const queryClient = useQueryClient();
@@ -46,9 +57,8 @@ const Post = ({ post }) => {
   });
 
   const handleLike = () => {
-    mutation.mutate(data?.likes.includes(currentUser.id));
+    mutation.mutate(data.includes(currentUser.id));
   };
-
   return (
     <div className="post">
       <div className="container">
@@ -78,7 +88,7 @@ const Post = ({ post }) => {
           <div className="item">
             {isPending ? (
               "Loading..."
-            ) : data?.likes.includes(currentUser.id) ? (
+            ) : data.includes(currentUser.id) ? (
               <FavoriteBorderIcon
                 style={{ color: "red" }}
                 onClick={handleLike}
@@ -86,11 +96,11 @@ const Post = ({ post }) => {
             ) : (
               <FavoriteBorderOutlinedIcon onClick={handleLike} />
             )}
-            {data && data.likes.length} Likes
+            {data && data.length} Likes
           </div>
           <div className="item" onClick={() => setOpenComment(!openComment)}>
             <TextsmsOutlinedIcon />
-            {data?.comments && data.comments.length} Comments
+            {commentsData && commentsData.length} Comments
           </div>
           <div className="item">
             <ShareOutlinedIcon /> Share

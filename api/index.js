@@ -8,6 +8,7 @@ import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import commentRoutes from "./routes/comments.js";
 import likeRoutes from "./routes/likes.js";
+import relationshipRoutes from "./routes/relationship.js";
 import uploadRoutes from "./routes/upload.js";
 import multer from "multer";
 
@@ -45,6 +46,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/likes", likeRoutes);
+app.use("/api/relationships", relationshipRoutes);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
