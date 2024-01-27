@@ -16,17 +16,6 @@ const Post = ({ post }) => {
   const [openComment, setOpenComment] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
-  const getInfo = async (postId) => {
-    const comments = await makeRequest.get("/comments?postId=" + postId);
-
-    const likes = await makeRequest.get("/likes?postId=" + postId);
-
-    return {
-      comments: comments.data,
-      likes: likes.data,
-    };
-  };
-
   const { isPending, error, data } = useQuery({
     queryKey: ["likes", post.id],
     queryFn: async () => {
@@ -67,7 +56,7 @@ const Post = ({ post }) => {
             <img src={post.profilePic} alt="img" />
             <div className="details">
               <Link
-                to={`/profile/${post.userId}`}
+                to={`profile/${post.userId}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <span className="name">

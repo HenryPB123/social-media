@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(inputs);
-      navigate("/");
+      navigate("/home");
 
       // const response = await login(inputs);
       // setData(response.data);

@@ -20,10 +20,10 @@ const NavBar = () => {
   return (
     <div className="navBar">
       <div className="left">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/home" style={{ textDecoration: "none" }}>
           <span>Social Pet</span>
         </Link>
-        <HomeOutlinedIcon onClick={() => navigate("/")} />
+        <HomeOutlinedIcon onClick={() => navigate("/home")} />
         {darkMode ? (
           <WbSunnyOutlinedIcon onClick={toggle} />
         ) : (

@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const Update = ({ setOpenUpdate, user }) => {
+  console.log("userrrrrdedeUpdate", user);
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
   const [texts, setTexts] = useState({
@@ -33,17 +34,15 @@ const Update = ({ setOpenUpdate, user }) => {
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(
-    (user) => {
+  const mutation = useMutation({
+    mutationFn: (user) => {
       return makeRequest.put("/users", user);
     },
-    {
-      onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries(["user"]);
-      },
-    }
-  );
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(["user"]);
+    },
+  });
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -145,7 +144,7 @@ const Update = ({ setOpenUpdate, user }) => {
             <button onClick={handleClick}>Update</button>
           </form>
           <button className="close" onClick={() => setOpenUpdate(false)}>
-            close
+            Close
           </button>
         </div>
       </div>

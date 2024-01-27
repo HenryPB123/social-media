@@ -18,7 +18,7 @@ import { AuthContext } from "../../context/authContext";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
-  const userId = parseInt(useLocation().pathname.split("/")[2]);
+  const userId = parseInt(useLocation().pathname.split("/")[3]);
 
   const [openUpdate, setOpenUpdate] = useState(false);
 
@@ -107,7 +107,7 @@ const Profile = () => {
                 {rIsLoading ? (
                   "Loading..."
                 ) : userId === currentUser.id ? (
-                  <button>Update</button>
+                  <button onClick={() => setOpenUpdate(true)}>Update</button>
                 ) : (
                   <button onClick={handleFollow}>
                     {relationshipData.includes(currentUser.id)
@@ -125,6 +125,7 @@ const Profile = () => {
           <Posts userId={userId} />
         </>
       )}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
     </div>
   );
 };

@@ -50,7 +50,7 @@ const Register = () => {
           name: "",
           password: "",
         });
-        setTimeout(() => navigate("/login"), 2000);
+        setTimeout(() => navigate("/"), 2000);
       } catch (error) {
         setNotification(error.response.data);
       }
@@ -69,7 +69,7 @@ const Register = () => {
             minima temporibus nostrum quaerat.
           </p>
           <span>Do you have an account</span>
-          <Link to="/login">
+          <Link to="/">
             <button>Login</button>
           </Link>
         </div>
