@@ -5,19 +5,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const Update = ({ setOpenUpdate, user }) => {
-  console.log("userrrrrdedeUpdate", user);
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
   const [texts, setTexts] = useState({
-    email: user.email,
-    password: user.password,
+    // email: user.email,
+    // password: user.password,
     name: user.name,
     city: user.city,
     website: user.website,
   });
 
   const upload = async (file) => {
-    console.log(file);
     try {
       const formData = new FormData();
       formData.append("file", file);

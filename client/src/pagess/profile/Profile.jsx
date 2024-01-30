@@ -17,17 +17,15 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 
 const Profile = () => {
+  const [openUpdate, setOpenUpdate] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const userId = parseInt(useLocation().pathname.split("/")[3]);
-
-  const [openUpdate, setOpenUpdate] = useState(false);
 
   const { isPending, error, data } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      return makeRequest.get("/users/find/" + userId).then((res) => {
-        return res.data;
-      });
+      const res = await makeRequest.get("/users/find/" + userId);
+      return res.data;
     },
   });
 
@@ -110,7 +108,7 @@ const Profile = () => {
                   <button onClick={() => setOpenUpdate(true)}>Update</button>
                 ) : (
                   <button onClick={handleFollow}>
-                    {relationshipData.includes(currentUser.id)
+                    {relationshipData?.includes(currentUser.id)
                       ? "Following"
                       : "Follow"}
                   </button>
@@ -125,7 +123,9 @@ const Profile = () => {
           <Posts userId={userId} />
         </>
       )}
-      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
+      {openUpdate === true && (
+        <Update setOpenUpdate={setOpenUpdate} user={data} />
+      )}
     </div>
   );
 };
