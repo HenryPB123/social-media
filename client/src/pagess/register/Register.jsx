@@ -7,8 +7,8 @@ const Register = () => {
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
-    name: "",
     password: "",
+    name: "",
   });
 
   const [notification, setNotification] = useState(null);
@@ -23,40 +23,35 @@ const Register = () => {
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault(); //!pendeinte
+    e.preventDefault();
 
-    if (
-      inputs.username.length === 0 ||
-      inputs.email.length === 0 ||
-      inputs.name.length === 0 ||
-      inputs.password.length === 0
-    ) {
-      setNotification("You need fill all the fields");
-    } else {
-      try {
-        // if (response.data === "User has been created!") {
-        //   console.log("target", e.target.username);
-        // }
+    // Verificar si algún campo está vacío
+    const areFieldsEmpty = Object.values(inputs).some(
+      (input) => input.length === 0
+    );
+    if (areFieldsEmpty) {
+      setNotification("You need to fill all the fields.");
+      return;
+    }
+    try {
+      const response = await axios.post(
+        `http://localhost:8800/api/auth/register`,
+        inputs
+      );
+      console.log("DATATATA", response.data);
 
-        const response = await axios.post(
-          `http://localhost:8800/api/auth/register`,
-          inputs
-        );
-
-        setNotification(response.data);
-        setInputs({
-          username: "",
-          email: "",
-          name: "",
-          password: "",
-        });
-        setTimeout(() => navigate("/"), 2000);
-      } catch (error) {
-        setNotification(error.response.data);
-      }
+      setNotification(response.data);
+      setInputs({
+        username: "",
+        email: "",
+        password: "",
+        name: "",
+      });
+      setTimeout(() => navigate("/"), 2000);
+    } catch (error) {
+      setNotification(error.response.data);
     }
   };
-  // console.log("response", response);
 
   return (
     <div className="register">
@@ -90,7 +85,13 @@ const Register = () => {
               onChange={handleChange}
               value={inputs.email}
             />
-
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+              value={inputs.password}
+            />{" "}
             <input
               type="text"
               placeholder="Name"
@@ -98,16 +99,9 @@ const Register = () => {
               onChange={handleChange}
               value={inputs.name}
             />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={inputs.password}
-            />
-            {notification && <h4>{notification}</h4>}
             <button onClick={handleRegister}>Register</button>
           </form>
+          {notification && <h4>{notification}</h4>}
         </div>
       </div>
     </div>

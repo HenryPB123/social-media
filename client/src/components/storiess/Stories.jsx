@@ -7,22 +7,22 @@ const Stories = () => {
   const stories = [
     {
       id: 1,
-      name: "Pet Name",
+      name: "Any Name",
       img: "https://images.pexels.com/photos/2013665/pexels-photo-2013665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       id: 2,
-      name: "Pet Name",
+      name: "Any Name",
       img: "https://images.pexels.com/photos/2013665/pexels-photo-2013665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       id: 3,
-      name: "Pet Name",
+      name: "Any Name",
       img: "https://images.pexels.com/photos/2013665/pexels-photo-2013665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       id: 4,
-      name: "Pet Name",
+      name: "Any Name",
       img: "https://images.pexels.com/photos/2013665/pexels-photo-2013665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
   ];
@@ -30,7 +30,7 @@ const Stories = () => {
   // const { currentUser } = useContext(AuthContext);
   const currentUser = {
     id: 1,
-    name: "Pet Name",
+    name: "Any Name",
     userId: 1,
     profilePic:
       "https://images.pexels.com/photos/56733/pexels-photo-56733.jpeg?auto=compress&cs=tinysrgb&w=800",

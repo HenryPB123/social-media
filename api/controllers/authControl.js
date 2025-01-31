@@ -4,11 +4,11 @@ import jwt from "jsonwebtoken";
 
 export const register = (req, res) => {
   //SHECK user if exist
-  const q = "SELECT * FROM users WHERE username = ?";
+  const q = "SELECT * FROM users WHERE email = ?";
 
-  db.query(q, [req.body.username], (error, data) => {
+  db.query(q, [req.body.email], (error, data) => {
     if (error) return res.status(500).json(error);
-    if (data.length) return res.status(409).json("User already exist!");
+    if (data.length) return res.status(409).json("User already exists!");
 
     //CREATE A NEW USER
     //Hash the password
@@ -16,13 +16,13 @@ export const register = (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
     const q =
-      "INSERT INTO users (`username`, `email`, `name`, `password`) VALUE (?)";
+      "INSERT INTO users (`username`, `email`, `password`, `name` ) VALUE (?)";
 
     const values = [
       req.body.username.toLowerCase(),
       req.body.email,
-      req.body.name.toLowerCase(),
       hashedPassword,
+      req.body.name.toLowerCase(),
     ];
 
     db.query(q, [values], (error, data) => {
@@ -34,9 +34,9 @@ export const register = (req, res) => {
 
 //!---------------------------------------------------------------------
 export const login = (req, res) => {
-  const q = "SELECT * FROM users WHERE username = ?";
+  const q = "SELECT * FROM users WHERE email = ?";
 
-  db.query(q, [req.body.username], (error, data) => {
+  db.query(q, [req.body.email], (error, data) => {
     if (error) return res.status(500).json(error);
     if (data.length === 0) return res.status(404).json("User not found!");
 
@@ -45,8 +45,7 @@ export const login = (req, res) => {
       data[0].password
     );
 
-    if (!checkPassword)
-      return res.status(400).json("Wrong username or password!");
+    if (!checkPassword) return res.status(400).json("Wrong email or password!");
 
     const token = jwt.sign({ id: data[0].id }, process.env.SECRETKEY);
 

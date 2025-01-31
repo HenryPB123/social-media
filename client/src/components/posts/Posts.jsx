@@ -7,7 +7,8 @@ const Posts = ({ userId }) => {
   const { isPending, error, data } = useQuery({
     queryKey: ["posts"],
     queryFn: async () => {
-      const res = await makeRequest.get("/posts?userId=" + userId);
+      const url = userId ? `/posts?userId=${userId}` : "/posts";
+      const res = await makeRequest.get(url);
       return res.data;
     },
   });

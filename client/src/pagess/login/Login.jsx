@@ -5,12 +5,11 @@ import { AuthContext } from "../../context/authContext";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
 
   const navigate = useNavigate();
 
@@ -28,9 +27,6 @@ const Login = () => {
     try {
       await login(inputs);
       navigate("/home");
-
-      // const response = await login(inputs);
-      // setData(response.data);
     } catch (error) {
       setError(error.response.data);
     }
@@ -56,8 +52,8 @@ const Login = () => {
           <form>
             <input
               type="text"
-              placeholder="Username"
-              name="username"
+              placeholder="Email"
+              name="email"
               onChange={handleChange}
             />
             <input
@@ -67,11 +63,9 @@ const Login = () => {
               onChange={handleChange}
             />
 
-            {error && <h4>{error}</h4>}
-            {/*{data && <h4>{data}</h4>}*/}
-
             <button onClick={handleLogin}>Login</button>
           </form>
+          {error && <h4>{error}</h4>}
         </div>
       </div>
     </div>

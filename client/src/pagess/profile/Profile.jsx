@@ -64,8 +64,24 @@ const Profile = () => {
       ) : (
         <>
           <div className="images">
-            <img src={data?.coverPic} alt="img" className="cover" />
-            <img src={data?.profilePic} alt="img" className="profilePic" />
+            <img
+              src={
+                data
+                  ? `/upload/${data.coverPicture}`
+                  : `/upload/${currentUser.coverPicture}`
+              }
+              alt="img"
+              className="cover"
+            />
+            <img
+              src={
+                data
+                  ? `/upload/${data.profilePicture}`
+                  : `/upload/${currentUser.profilePicture}`
+              }
+              alt="img"
+              className="profilePic"
+            />
           </div>
 
           <div className="profileContainer">
@@ -123,9 +139,7 @@ const Profile = () => {
           <Posts userId={userId} />
         </>
       )}
-      {openUpdate === true && (
-        <Update setOpenUpdate={setOpenUpdate} user={data} />
-      )}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
     </div>
   );
 };

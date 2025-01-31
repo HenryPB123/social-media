@@ -14,6 +14,7 @@ import { AuthContext } from "../../context/authContext";
 
 const Post = ({ post }) => {
   const [openComment, setOpenComment] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
   const { isPending, error, data } = useQuery({
@@ -41,19 +42,44 @@ const Post = ({ post }) => {
     },
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries(["likes"]);
+      queryClient.invalidateQueries(["posts"]);
     },
   });
-
   const handleLike = () => {
     mutation.mutate(data.includes(currentUser.id));
   };
+
+  const deleteMutation = useMutation({
+    mutationFn: (postId) => {
+      console.log("aaaa", postId);
+      console.log("bbbbbb", post.id);
+
+      return makeRequest.delete("/posts/" + postId);
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(["posts"]);
+    },
+  });
+
+  const handleDelete = () => {
+    deleteMutation.mutate(post.id);
+  };
+
   return (
     <div className="post">
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="img" />
+            <img
+              src={
+                currentUser?.profilePicture && "/upload/" + post.profilePicture
+              }
+              alt="img"
+              onError={(e) => {
+                e.target.src = post.profilePicture;
+              }}
+            />
             <div className="details">
               <Link
                 to={`profile/${post.userId}`}
@@ -66,18 +92,25 @@ const Post = ({ post }) => {
               <span className="date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
-          <MoreHorizOutlinedIcon />
+          {post.userId === currentUser.id && (
+            <>
+              <MoreHorizOutlinedIcon onClick={() => setOpenMenu(!openMenu)} />
+              {openMenu && post.userId === currentUser.id && (
+                <button onClick={handleDelete}>Delete</button>
+              )}
+            </>
+          )}
         </div>
         <hr />
         <div className="content">
-          <p>{post.desc}</p>
+          <p>{post.description}</p>
           {post.img && <img src={"../../../upload/" + post.img} alt="img" />}
         </div>
         <div className="info">
           <div className="item">
             {isPending ? (
               "Loading..."
-            ) : data.includes(currentUser.id) ? (
+            ) : data && data.includes(currentUser.id) ? (
               <FavoriteBorderIcon
                 style={{ color: "red" }}
                 onClick={handleLike}

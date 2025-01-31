@@ -21,7 +21,7 @@ const NavBar = () => {
     <div className="navBar">
       <div className="left">
         <Link to="/home" style={{ textDecoration: "none" }}>
-          <span>Social Pet</span>
+          <span>Social App</span>
         </Link>
         <HomeOutlinedIcon onClick={() => navigate("/home")} />
         {darkMode ? (
@@ -41,7 +41,10 @@ const NavBar = () => {
         <EmailOutlinedIcon />
         <NotificationsOutlinedIcon />
         <div className="user">
-          <img src={currentUser.profilePic} alt="user" />
+          <img
+            src={currentUser && `/upload/${currentUser.profilePicture}`}
+            alt="user"
+          />
           <span>
             {currentUser.name.charAt(0).toUpperCase() +
               currentUser.name.slice(1)}

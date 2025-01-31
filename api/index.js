@@ -13,8 +13,8 @@ import uploadRoutes from "./routes/upload.js";
 import multer from "multer";
 
 const app = express();
-const PORT = 8800;
 dotenv.config();
+const PORT = 8800;
 
 //midlewares
 app.use((req, res, next) => {
@@ -27,8 +27,10 @@ app.use(
     origin: "http://localhost:5173",
   })
 );
+
 app.use(cookieParser());
 
+//!Administra la creación de las imagenes
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "../client/public/upload");

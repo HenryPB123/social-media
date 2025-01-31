@@ -9,10 +9,10 @@ const RightBar = () => {
           <div className="user">
             <div className="userInfo">
               <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="img"
               />
-              <span>Pet Name</span>
+              <span>Any Name</span>
             </div>
             <div className="buttons">
               <button>Follow</button>
@@ -22,10 +22,10 @@ const RightBar = () => {
           <div className="user">
             <div className="userInfo">
               <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="img"
               />
-              <span>Pet Name</span>
+              <span>Any Name</span>
             </div>
             <div className="buttons">
               <button>Follow</button>
@@ -39,12 +39,12 @@ const RightBar = () => {
           <div className="user">
             <div className="userInfo">
               <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="img"
               />
 
               <p>
-                <span>Pet Name</span> changed their cover picture
+                <span>Any Name</span> changed their cover picture
               </p>
             </div>
             <span>1 min ago</span>
@@ -52,12 +52,12 @@ const RightBar = () => {
           <div className="user">
             <div className="userInfo">
               <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="img"
               />
 
               <p>
-                <span>Pet Name</span> changed their cover picture
+                <span>Any Name</span> changed their cover picture
               </p>
             </div>
             <span>1 min ago</span>
@@ -65,12 +65,12 @@ const RightBar = () => {
           <div className="user">
             <div className="userInfo">
               <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="img"
               />
 
               <p>
-                <span>Pet Name</span> changed their cover picture
+                <span>Any Name</span> changed their cover picture
               </p>
             </div>
             <span>1 min ago</span>
@@ -78,12 +78,12 @@ const RightBar = () => {
           <div className="user">
             <div className="userInfo">
               <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="img"
               />
 
               <p>
-                <span>Pet Name</span> changed their cover picture
+                <span>Any Name</span> changed their cover picture
               </p>
             </div>
             <span>1 min ago</span>
@@ -95,11 +95,51 @@ const RightBar = () => {
           <div className="user">
             <div className="userInfo">
               <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="img"
               />
               <div className="online" />
-              <span>Pet Name</span>
+              <span>Any Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Any Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Any Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Any Name</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://images.pexels.com/photos/39369/baby-teddy-bear-cute-39369.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="img"
+              />
+              <div className="online" />
+              <span>Any Name</span>
             </div>
           </div>
           <div className="user">
@@ -109,47 +149,7 @@ const RightBar = () => {
                 alt="img"
               />
               <div className="online" />
-              <span>Pet Name</span>
-            </div>
-          </div>
-          <div className="user">
-            <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="img"
-              />
-              <div className="online" />
-              <span>Pet Name</span>
-            </div>
-          </div>
-          <div className="user">
-            <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="img"
-              />
-              <div className="online" />
-              <span>Pet Name</span>
-            </div>
-          </div>
-          <div className="user">
-            <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="img"
-              />
-              <div className="online" />
-              <span>Pet Name</span>
-            </div>
-          </div>
-          <div className="user">
-            <div className="userInfo">
-              <img
-                src="https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="img"
-              />
-              <div className="online" />
-              <span>Pet Name</span>
+              <span>Any Name</span>
             </div>
           </div>
         </div>

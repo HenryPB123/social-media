@@ -28,8 +28,15 @@ const LeftBar = () => {
             className="user"
             onClick={() => navigate(`/home/profile/${currentUser.id}`)}
           >
-            <img src={currentUser.profilePic} alt="user" />
-            <span>Profile {currentUser.name}</span>
+            <img
+              src={currentUser && `/upload/${currentUser?.profilePicture}`}
+              alt="user"
+            />
+            <span>
+              Profile{" "}
+              {currentUser.name.charAt(0).toUpperCase() +
+                currentUser.name.slice(1)}
+            </span>
           </div>
           <div className="item">
             <img src={Friends} alt="" />

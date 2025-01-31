@@ -38,6 +38,12 @@ const Share = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+
+    // Verifica que la descripción no esté vacía
+    if (!desc) {
+      return;
+    }
+
     let imgUrl = "";
     if (file) imgUrl = await upload();
     mutation.mutate({ desc, img: imgUrl });
@@ -50,10 +56,16 @@ const Share = () => {
       <div className="container">
         <div className="top">
           <div className="left">
-            <img src={currentUser.profilePic} alt="" />
+            <img
+              src={currentUser && "/upload/" + currentUser.profilePicture}
+              alt="Profile Photo"
+            />
             <input
               type="text"
-              placeholder={`What's on your mind ${currentUser.name}?`}
+              placeholder={`What's on your mind ${
+                currentUser.name.charAt(0).toUpperCase() +
+                currentUser.name.slice(1)
+              }?`}
               onChange={(e) => setDesc(e.target.value)}
               value={desc}
             />

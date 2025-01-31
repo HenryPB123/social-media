@@ -10,11 +10,10 @@ const Comments = ({ postId }) => {
   const [desc, setDesc] = useState("");
 
   const { isPending, error, data } = useQuery({
-    queryKey: ["comments"],
+    queryKey: ["comments", postId],
     queryFn: async () => {
-      return makeRequest.get("/comments?postId=" + postId).then((res) => {
-        return res.data;
-      });
+      const res = await makeRequest.get("/comments?postId=" + postId);
+      return res.data;
     },
   });
 
@@ -32,6 +31,7 @@ const Comments = ({ postId }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    if (!desc) return;
     mutation.mutate({ desc, postId: postId });
     setDesc("");
   };
@@ -39,7 +39,7 @@ const Comments = ({ postId }) => {
   return (
     <div className="comments">
       <div className="write">
-        <img src={currentUser.profilePic} alt="img" />
+        <img src={currentUser.profilePicture} alt="img" />
         <input
           type="text"
           placeholder="Write a comment..."
@@ -52,14 +52,15 @@ const Comments = ({ postId }) => {
         ? "Something went wrong"
         : isPending
         ? "Loading..."
-        : data?.map((comment) => (
+        : data &&
+          data.map((comment) => (
             <div className="comment" key={comment.id}>
-              <img src={comment.profilePic} alt="img" />
+              <img src={comment.profilePicture} alt="img" />
               <div className="info">
                 <span>
                   {comment.name.charAt(0).toUpperCase() + comment.name.slice(1)}
                 </span>
-                <p>{comment.desc}</p>
+                <p>{comment.description}</p>
               </div>
               <span className="date">
                 {moment(comment.createdAt).fromNow()}

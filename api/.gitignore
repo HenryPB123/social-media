@@ -1,0 +1,36 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+logfile*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Database files
+*.sqlite
+*.sqlite3
+
+# Uploads (for multer)
+uploads/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore built files (if any)
+build/
+dist/
