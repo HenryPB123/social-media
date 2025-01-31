@@ -7,18 +7,70 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependencias
+node_modules/
+.pnp/
+.pnp.js
+
+# Directorios de compilación
+dist/
+dist-ssr/
 *.local
 
-# Editor directories and files
-.vscode/*
+# Archivos de configuración de Vite y caché
+.vite/
+.vitepress/
+.cache/
+output.log
+
+# Archivos del editor
+.vscode/
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración de ESLint
+.eslintcache
+
+# Archivos de Styled Components (opcional)
+styled-components.cache/
+
+# Configuración de Moment.js (si usas localizaciones personalizadas)
+moment-locales/
+
+# Configuración específica de Mac/Linux/Windows
+*.swp
+
+
+# # Logs
+# logs
+# *.log
+# npm-debug.log*
+# yarn-debug.log*
+# yarn-error.log*
+# pnpm-debug.log*
+# lerna-debug.log*
+
+# node_modules
+# dist
+# dist-ssr
+# *.local
+
+# # Editor directories and files
+# .vscode/*
+# !.vscode/extensions.json
+# .idea
+# .DS_Store
+# *.suo
+# *.ntvs*
+# *.njsproj
+# *.sln
+# *.sw?
